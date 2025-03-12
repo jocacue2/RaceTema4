@@ -409,19 +409,14 @@ parse_number('class5')
 33. Observa el conjunto `students4` donde se presenta el problema de tener varias observaciones en la misma tabla. Separa el conjunto en dos tablas, una que contenga información relativa a los estudiantes, que llamarás `student_info`, que no debe contener repeticiones, y otra con las calificaciones y la clave primaria que enlaza ambas tablas(`id`), que llamarás `gradebook`.
 ```{r}
 
-
-
-
-
-
-
-
+student_info <- students4 %>% select(id, name, sex) %>% distinct()
+gradebook <- students4 %>% select(id, class, midterm, final)
 
 ```
 34. Consideremos el caso de una observación almacenada en varias tablas. Observa los datos almacenados en `failed` y `passed` con la información de los alumnos que suspeden (calificaciones C,D,E,F) y los que aprueban (calificaciones A, B). Debes unir ambos conjuntos en uno que contenga una columna adicional llamada `status` que indicará `passed` o `failed` según la situación de cada alumno, puedes usar la función `bind_rows`.
 ```{r}
 
-
+bind_rows(passed %>% mutate(status = "passed"), failed %>% mutate(status = "failed"))
 
 ```
 # Pongamos todo en común.
@@ -431,21 +426,12 @@ Considera los datos almacenado en `sat` y haz las transformaciones adecuadas par
 
 ```{r}
 
-
-
-
-
+sat %>% gather(key = "part_sex", value = "count", -score_range) %>% separate(part_sex, into = c("part", "sex"))
 
 ```
 
 36. Utiliza agrupamientos, según las variables `part, sex` y genera dos nuevas columnas que contengan el número total de estudiantes en dicho grupo, y la proporción dentro del grupo. Almacénalas en las variables `total y prop` respectivamente.
 ```{r}
-
-
-
-
-
-
 
 
 
