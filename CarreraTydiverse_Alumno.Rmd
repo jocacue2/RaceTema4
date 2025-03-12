@@ -44,6 +44,7 @@ language:
 library(knitr)
 library(ggplot2)
 library(readr)
+library(tidyr)
 
 options(width = 100)
 # Opciones generales chunks
@@ -362,6 +363,13 @@ cran_join %>% group_by(continent_name) %>% summarise(total_size_tb = sum(size) /
 # tidyr.
 Carga el fichero de datos `datostidyr.Rdata` que contiene varios conjuntos de datos que vamos a usar en los siguientes ejercicios.
 
+```{r}
+
+load("./data/datostidyr.Rdata")
+
+```
+
+
 29. Observa el data frame `students` :
   grade male female
 1     A    1      5
@@ -374,7 +382,7 @@ La columna `grade` es la calificación y las dos siguientes el número de estudi
 ¿ Cuáles son las variables ?. Transfórmalo en un conjunto `tidy` con las variables, `grade, sex y count`
 ```{r}
 
-
+students %>% gather(key = "sex", value = "count", -grade)
 
 ```
 30. Considera el conjunto ´students2´, que es similar al primero pero que se han recogido datos correspondientes a dos grupos, (`male_1, female_1`, etc). Transfórmalo en un conjunto `tidy` añadiendo una columna adicional correspondiente al grupo (llama a la nueva variable `class`)
