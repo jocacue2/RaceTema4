@@ -313,7 +313,7 @@ cran %>% select(ip_id, country, package, size) %>% print()
 
 ```{r}
 
-
+cran %>% mutate(size_mb = size / 2^20)
 
 ```
 
