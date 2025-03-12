@@ -43,6 +43,8 @@ language:
 # CONFIGURACIÓN GENERAL
 library(knitr)
 library(ggplot2)
+library(readr)
+
 options(width = 100)
 # Opciones generales chunks
 
@@ -349,17 +351,11 @@ cran %>% group_by(country) %>% summarise(total_size = sum(size)) %>% filter(tota
  
 ```{r}
 
-
-
-
-
-
-
-
-
-
-
-
+code_paises <- read_csv("GeoLite2-Country-Locations-es.csv", locale = locale(encoding = "UTF-8"))
+cran_filt <- cran %>% filter(!is.na(country))
+code_paises <- code_paises %>% filter(!is.na(country_iso_code))
+cran_join <- cran_filt %>% left_join(code_paises %>% select(country_iso_code, continent_name), by = c("country" = "country_iso_code"))
+cran_join %>% group_by(continent_name) %>% summarise(total_size_tb = sum(size) / 2^40) %>% arrange(desc(total_size_tb)) %>% ggplot(aes(x = continent_name, y = total_size_tb, colour = continent_name)) + geom_bar(stat = "identity")
 
 ```
 
