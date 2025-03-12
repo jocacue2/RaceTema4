@@ -297,12 +297,8 @@ top_counts_sorted
 
 ```{r}
 
-
-
-
-
-
-
+top_unique_sorted <- top_counts_sorted %>% arrange(unique)
+top_unique_sorted
 
 ```
 25. Completa lo que se indica  usando `pipes`. Selecciona las columnas `ip_id, country, package, size` de `cran` y muestra el resultado por pantalla usando `print`. No es necesario almacenar.
