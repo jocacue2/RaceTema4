@@ -45,6 +45,7 @@ library(knitr)
 library(ggplot2)
 library(readr)
 library(tidyr)
+library(lubridate)
 
 options(width = 100)
 # Opciones generales chunks
@@ -450,26 +451,32 @@ sat %>% ggplot(aes(x = score_range, y = count, color = sex)) + geom_point() + fa
 38. La función `today` devuelve la fecha actual. Almacéna la fecha actual en `this_day`, y muéstrala por pantalla. Usa las funciones `year, month y day` para extraer cada una de las partes. `wday` para obtener el día de la semana ()
 ```{r}
 
-
-
-
-
-
+this_day <- today()
+this_day
+year(this_day)
+month(this_day)
+day(this_day)
+wday(this_day)
 
 ```
 39. Guarda el instante actual en una variable llamada `this_moment` con la función `now`
 y muéstralo por pantalla. Usa las funciónes `hour, minute, second` para extraer la información de cada elemento.
 ```{r}
 
-
-
-
+this_moment <- now()
+this_moment
+hour(this_moment)
+minute(this_moment)
+second(this_moment)
 
 ```
 40. La librería `lubridate` dispone de múltiples funciones para importar en formato fecha datos con un gran variedad de formatos de entrada `ymd(), dmy(), hms(), ymd_hms()` donde cada letra indica _years (y),months (m), days (d), hours (h), minutes (m), y seconds (s)_. Prueba my_date <- ymd("2019-02-14"), y determina de que clase es `my_date`. Las funciones son muy robustas y pueden intepretar correctamente diversos formato. Prueba `ymd()` para importar la fecha  __"1989 May 17"__. ¿Cómo importarías __"March 12, 1975"__?
 ```{r}
 
-
+my_date <- ymd("2019-02-14")
+class(my_date)
+ymd("1989 May 17")
+mdy("March 12, 1975")
 
 ```
 41. Importa el valor numérico `25081985`, sabiendo que el formato es dia, mes, año, y posteriormente `192012` donde se ha almacenado año, mes y día. Modifica el campo fecha en el segundo caso añadiendo algún carácter separador para eliminar la ambigüedad.
