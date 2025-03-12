@@ -127,9 +127,7 @@ rm(mydf)
 3. Una ventaja de trasformar en tibble es la visualización. Escribe directamente el nombre de la variable y observa la visualización. Posteriormente usa la función `glimpse` sobre `cran` y observa el resultado.
 ```{r}
 
-cran
 
-glimpse(cran)
 
 ```
 # dplyr
@@ -170,6 +168,8 @@ cran %>% select(r_arch:country)
 
 8. Elige aquellas descargas cuyo tamaño supera los 100500 bytes desde un sistema operativo  `linux-gnu`.
 ```{r}
+
+
 
 ```
 9. Elige aquellas descargas en las que la versión del sistema operativo no está vacía.
